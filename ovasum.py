@@ -2,9 +2,10 @@ import tarfile
 import sys
 import hashlib
 
-# .mf file parser, retunrs hashes nicely
+
+# .mf file parser, returns hashes nicely
 def mfparser(hashfile):
-    hashdict = { 'ovf': [], 'vmdk': [] }
+    hashdict = {'ovf': [], 'vmdk': []}
     for line in hashfile:
         line = str(line)
         if '.ovf' in line:
@@ -12,6 +13,7 @@ def mfparser(hashfile):
         elif '.vmdk' in line:
             hashdict['vmdk'].append(line[-45:-5])
     return hashdict
+
 
 hashes = {}
 
@@ -24,13 +26,13 @@ for filename in sys.argv[1:]:
         try:
             with tarfile.open(filename) as ova:
 
-            # find and process .mf file first
+                # find and process .mf file first
                 for member in ova.getmembers():
                     if member.isfile() and member.name.endswith('mf'):
                         with ova.extractfile(member) as hashfile:
                             hashes = mfparser(hashfile)
 
-            # find other files and check hashes
+                # find other files and check hashes
                 for member in ova.getmembers():
                     if member.isfile() and member.name.endswith('ovf'):
                         ovfsha1 = hashlib.sha1()
