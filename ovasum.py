@@ -7,11 +7,11 @@ import hashlib
 def mfparser(hashfile):
     hashdict = {'ovf': [], 'vmdk': []}
     for line in hashfile:
-        line = str(line)
+        line = str(line, 'utf-8')
         if '.ovf' in line:
-            hashdict['ovf'].append(line[-45:-5])
+            hashdict['ovf'].append(line[-41:-1])
         elif '.vmdk' in line:
-            hashdict['vmdk'].append(line[-45:-5])
+            hashdict['vmdk'].append(line[-41:-1])
     return hashdict
 
 

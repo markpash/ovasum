@@ -12,7 +12,8 @@ I also haven't studied the ova standard (if it is a standard) so I do not know i
 TODO:
 - Refactor to make it less crap
 - Add proper exception handling
-- Rewrite the mf parser to be able to reliably parse any valid mf file
+- ~~Rewrite the mf parser to be able to reliably parse any valid mf file~~
+- Create a nice data structure for the parsed manifest
 - Add timestamps to console output
 - Add progress bars for checking
 - Add colours to the pass and fail messages
